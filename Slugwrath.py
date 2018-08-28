@@ -17,7 +17,7 @@ async def on_ready():
 async def on_message(message):
 
     if message.content.lower().startswith('immortal xp'):
-        await client.send_message(message.channel, "You have `{}` XP!```Remember to be active and talk, to get higher role.```".format(get_xp(message.author.id)))
+        await client.send_message(message.channel, "You have `{}` XP!__*```Remember to be active and talk, to get higher role.```*__".format(get_xp(message.author.id)))
 
     user_add_xp(message.author.id, 5)
 
