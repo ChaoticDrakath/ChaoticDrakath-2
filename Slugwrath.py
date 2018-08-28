@@ -17,9 +17,9 @@ async def on_ready():
 async def on_message(message):
 
     if message.content.lower().startswith('immortal xp'):
-        await client.send_message(message.channel, "You have `{}` XP!`Remember to be active and talk, to get higher role.`".format(get_xp(message.author.id)))
+        await client.send_message(message.channel, "You have `{}` XP!```Remember to be active and talk, to get higher role.```".format(get_xp(message.author.id)))
 
-    user_add_xp(message.author.id, 6)
+    user_add_xp(message.author.id, 5)
 
 
 def user_add_xp(user_id: int, xp: int):
@@ -29,19 +29,19 @@ def user_add_xp(user_id: int, xp: int):
                 users = json.load(fp)
             users[user_id]['xp'] += xp
             with open('users.json', 'w') as fp:
-                json.dump(users, fp, sort_keys=True, indent=8)
+                json.dump(users, fp, sort_keys=True, indent=5)
         except KeyError:
             with open('users.json', 'r') as fp:
                 users = json.load(fp)
             users[user_id] = {}
             users[user_id]['xp'] = xp
             with open('users.json', 'w') as fp:
-                json.dump(users, fp, sort_keys=True, indent=8)
+                json.dump(users, fp, sort_keys=True, indent=5)
     else:
         users = {user_id: {}}
         users[user_id]['xp'] = xp
         with open('users.json', 'w') as fp:
-            json.dump(users, fp, sort_keys=True, indent=8)
+            json.dump(users, fp, sort_keys=True, indent=5)
 
 
 def get_xp(user_id: int):
