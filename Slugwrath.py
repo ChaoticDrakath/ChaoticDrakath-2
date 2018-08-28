@@ -19,7 +19,7 @@ async def on_message(message):
     if message.content.lower().startswith('immortal xp'):
         await client.send_message(message.channel, "You have `{}` XP!".format(get_xp(message.author.id)))
 
-    user_add_xp(message.author.id, 2)
+    user_add_xp(message.author.id, 6)
 
 
 def user_add_xp(user_id: int, xp: int):
@@ -29,19 +29,19 @@ def user_add_xp(user_id: int, xp: int):
                 users = json.load(fp)
             users[user_id]['xp'] += xp
             with open('users.json', 'w') as fp:
-                json.dump(users, fp, sort_keys=True, indent=4)
+                json.dump(users, fp, sort_keys=True, indent=8)
         except KeyError:
             with open('users.json', 'r') as fp:
                 users = json.load(fp)
             users[user_id] = {}
             users[user_id]['xp'] = xp
             with open('users.json', 'w') as fp:
-                json.dump(users, fp, sort_keys=True, indent=4)
+                json.dump(users, fp, sort_keys=True, indent=8)
     else:
         users = {user_id: {}}
         users[user_id]['xp'] = xp
         with open('users.json', 'w') as fp:
-            json.dump(users, fp, sort_keys=True, indent=4)
+            json.dump(users, fp, sort_keys=True, indent=8)
 
 
 def get_xp(user_id: int):
